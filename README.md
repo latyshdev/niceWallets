@@ -18,3 +18,6 @@ npm i fs
 node createNiceWallets.js - запустить создание красивых кошельков
 node createWallets.js - запустить создание обычных кошельков
 node mnemonicsToPrivate.js - запустим получение приватных ключей из сид-фраз
+
+Поддержать автора:
+0x99984bbff08c169796e1b070cffcb3795faf9999
