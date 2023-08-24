@@ -7,7 +7,7 @@ const ETHERS = require('ethers');
 // Константы и переменные
 const PREFIX = `WALLETS`; // Столбец имен
 const FILENAME = `${PREFIX}.txt`; // Имя файла, куда записывать кошельки
-const AMOUNT = 1;  // Количество кошельков
+const AMOUNT = 5;  // Количество кошельков
 let startI = 0;
 const Utils = require('./utils.js');
 const TYPE = `создания обычных кошельков`;

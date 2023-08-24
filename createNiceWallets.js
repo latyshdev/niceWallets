@@ -11,8 +11,8 @@ const FILENAME = `${PREFIX}.txt`; // Имя файла, куда записыв�
 const AMOUNT = 5;  // Количество кошельков
 const AAAA_ = true; // Использовать маску 0x**...AAAA (одинаковые 4 знака)
 const AABB_ = true; // Использовать маску 0x**...AABB (одинаковые 2 знака)
-const ABAB_ = true;
-const ABBA_ = true;
+const ABAB_ = false;
+const ABBA_ = false;
 const BAAA_ = true;
 const AAAB_ = true;
 const AAAB_BAAA = true;
@@ -30,7 +30,7 @@ let startI = 0;
             address = wallet.address;
             // console.log(mnemonicWallet.mnemonic.phrase,
                 // mnemonicWallet.privateKey, address);
-            equals = check(address);
+            let equals = check(address);
             console.log(
                 address[address.length - 1]
                 ,address[address.length - 2]

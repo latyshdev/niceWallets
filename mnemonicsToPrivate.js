@@ -20,7 +20,8 @@ const mnemonics = FS
 (async () => {
     Utils.greetings(TYPE);
     for (let mnemonic of mnemonics) {
-        mnemonic = mnemonic.replaceAll('\r');
+        console.log(JSON.stringify(mnemonic));
+        mnemonic = mnemonic.replaceAll('\r', '');
         const wallet = new ETHERS.Wallet
             .fromMnemonic(mnemonic);
 
