@@ -32,10 +32,16 @@ let startI = 0;
                 // mnemonicWallet.privateKey, address);
             let equals = check(address);
             console.log(
-                address[address.length - 1]
-                ,address[address.length - 2]
-                ,address[address.length - 3]
-                ,address[address.length - 4],
+                `0x`,
+                address[2],
+                address[3],
+                address[4],
+                address[5],
+                `...`,          
+                address[address.length - 1],
+                address[address.length - 2],
+                address[address.length - 3],
+                address[address.length - 4],
                 equals
             );
 
@@ -48,7 +54,7 @@ let startI = 0;
         }
     
     console.log("READY");
-    Utils.greetings(TYPE);
+    Utils.goodBye();
     process.exit();
 })();
 

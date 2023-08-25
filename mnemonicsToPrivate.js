@@ -31,6 +31,6 @@ const mnemonics = FS
 
     };
     console.log("Готово");
-    Utils.greetings(TYPE);
+    Utils.goodBye();
     process.exit();
 })();

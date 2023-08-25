@@ -23,6 +23,6 @@ const TYPE = `создания обычных кошельков`;
     }
     
     console.log("READY");
-    Utils.greetings(TYPE);
+    Utils.goodBye();
     process.exit();
 })();
