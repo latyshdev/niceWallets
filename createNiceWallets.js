@@ -9,12 +9,12 @@ const PREFIX = `4444`; // Столбец имен
 const FILENAME = `${PREFIX}.txt`; // Имя файла, куда записывать кошельки
 // const FILENAME = `4444.txt`; // Имя файла, куда записывать кошельки
 const AMOUNT = 5;  // Количество кошельков
-const AAAA_ = true; // Использовать маску 0x**...AAAA (одинаковые 4 знака)
+const AAAA_ = false; // Использовать маску 0x**...AAAA (одинаковые 4 знака)
 const AABB_ = false; // Использовать маску 0x**...AABB (одинаковые 2 знака)
 const ABAB_ = false;
 const ABBA_ = false;
-const BAAA_ = true;
-const AAAB_ = true;
+const BAAA_ = false;
+const AAAB_ = false;
 const AAAB_BAAA = true;
 const Utils = require('./utils.js');
 const TYPE = `создания красивых кошельков`;
@@ -24,6 +24,7 @@ let startI = 0;
 /* ========================================================================= */
 (async () => {
     Utils.greetings(TYPE);
+    await Utils.pause(10000);
     while (startI < AMOUNT) {
         const wallet = ETHERS.Wallet.createRandom();
             // console.log(mnemonicWallet);
