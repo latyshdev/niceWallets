@@ -9,13 +9,17 @@ const PREFIX = `4444`; // Столбец имен
 const FILENAME = `${PREFIX}.txt`; // Имя файла, куда записывать кошельки
 // const FILENAME = `4444.txt`; // Имя файла, куда записывать кошельки
 const AMOUNT = 5;  // Количество кошельков
-const AAAA_ = false; // Использовать маску 0x**...AAAA (одинаковые 4 знака)
+const AAAA_ = true; // Использовать маску 0x**...AAAA (одинаковые 4 знака)
 const AABB_ = false; // Использовать маску 0x**...AABB (одинаковые 2 знака)
 const ABAB_ = false;
 const ABBA_ = false;
 const BAAA_ = false;
 const AAAB_ = false;
-const AAAB_BAAA = true;
+const AAAB_BAAA = false;
+const AAAA_AAAA_ = true;
+const AAAA_BBBB_ = true;
+
+
 const Utils = require('./utils.js');
 const TYPE = `создания красивых кошельков`;
 
@@ -111,7 +115,38 @@ function aaab_baaa (address){
 }
 
 /* ========================================================================= */
+function aaaa_bbbb (address){
+    return (
+        address[2] === address[3]
+        && address[2] === address[4]
+        && address[2] === address[5]
+        && address[address.length - 1] === address[address.length - 2]
+        && address[address.length - 1] === address[address.length - 3]
+        && address[address.length - 1] === address[address.length - 4]
+    )
+        ? true : 
+        false;
+}
+
+/* ========================================================================= */
+function aaaa_aaaa (address){
+    return (
+        address[2] === address[3]
+        && address[2] === address[4]
+        && address[2] === address[5]
+        && address[2] === address[address.length - 1]
+        && address[2] === address[address.length - 2]
+        && address[2] === address[address.length - 3]
+        && address[2] === address[address.length - 4]
+    )
+        ? true : 
+        false;
+}
+
+
+/* ========================================================================= */
 function check(address){
+    
     let AAAA = (AAAA_) ? aaaa(address) : false;
     let AABB = (AABB_) ? aabb(address) : false;
     let ABAB = (ABAB_) ? abab(address) : false;
@@ -119,6 +154,13 @@ function check(address){
     let AAAB = (AAAB_) ? aaab(address) : false;
     let ABBA = (ABBA_) ? abba(address) : false;
     let AAAB__BAAA = (AAAB_BAAA) ? aaab_baaa(address) : false;
+    let AAAA_AAAA = (AAAA_AAAA_) ? aaaa_aaaa(address) : false;
+    let AAAA_BBBB = (AAAA_BBBB_) ? aaaa_bbbb(address) : false;
 
-    return ABBA || AABB || ABAB || AAAA || AAAB__BAAA || AAAB || BAAA;
+    return ABBA || 
+        AABB || ABAB ||
+        AAAA || AAAB || BAAA ||
+        AAAB__BAAA ||
+        AAAA_BBBB || 
+        AAAA_AAAA;
 }
