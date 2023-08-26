@@ -8,7 +8,7 @@ const ETHERS = require('ethers');
 const PREFIX = `4444`; // Столбец имен
 const FILENAME = `${PREFIX}.txt`; // Имя файла, куда записывать кошельки
 // const FILENAME = `4444.txt`; // Имя файла, куда записывать кошельки
-const AMOUNT = 5;  // Количество кошельков
+const AMOUNT = 1;  // Количество кошельков
 const AAAA_ = true; // Использовать маску 0x**...AAAA (одинаковые 4 знака)
 const AABB_ = false; // Использовать маску 0x**...AABB (одинаковые 2 знака)
 const ABAB_ = false;
@@ -65,10 +65,9 @@ let startI = 0;
 
 /* ========================================================================= */
 function aaaa (address){
-    return address[address.length - 1]
-        === address[address.length - 2]
-        === address[address.length - 3]
-        === address[address.length - 4];
+    return address[address.length - 1] === address[address.length - 2] &&
+        address[address.length - 1] === address[address.length - 3] &&
+        address[address.length - 1] === address[address.length - 4];
 }
 
 /* ========================================================================= */
