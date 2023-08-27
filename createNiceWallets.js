@@ -23,12 +23,14 @@ const _AAAA = true; // Использовать маску 0x**...AAAA (один
 const AAAB_BAAA = false; // Использовать маску 0xAAAB...BAAA (одинаковые 3 знака в конце)
 const AAAA_AAAA_ = true;
 const AAAA_BBBB_ = true;
+const _0000 = true;
 
 
 const Utils = require('./utils.js');
 const TYPE = `создания красивых кошельков`;
 
 let startI = 0;
+
 
 /* ========================================================================= */
 (async () => {
@@ -73,6 +75,10 @@ function aaaa (address){
     return address[address.length - 1] === address[address.length - 2] &&
         address[address.length - 1] === address[address.length - 3] &&
         address[address.length - 1] === address[address.length - 4];
+}
+
+function _0000f (address) {
+    return aaaa(address) && address[address.length - 1] === `0`
 }
 
 /* ========================================================================= */
@@ -168,6 +174,7 @@ function check(address){
     let AAAB__BAAA = (AAAB_BAAA) ? aaab_baaa(address) : false;
     let AAAA_AAAA = (AAAA_AAAA_) ? aaaa_aaaa(address) : false;
     let AAAA_BBBB = (AAAA_BBBB_) ? aaaa_bbbb(address) : false;
+    let _ZERO = (_0000) ? _0000f(address) : false;
 
     return ABBA || 
         AABB || ABAB ||
