@@ -58,10 +58,10 @@ let startI = 0;
                 address[4],
                 address[5],
                 `...`,          
-                address[address.length - 1],
-                address[address.length - 2],
-                address[address.length - 3],
                 address[address.length - 4],
+                address[address.length - 3],
+                address[address.length - 2],
+                address[address.length - 1],
                 equals
             );
 
