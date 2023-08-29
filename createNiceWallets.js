@@ -96,7 +96,7 @@ function aaaa (address){
 
 function _0000f (address) {
     let first = getFirstFour(address);
-    console.log(first, _aaaa(address))
+    // console.log(first, _aaaa(address))
     return _aaaa(address) && first === `0000`
 }
 
