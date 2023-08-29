@@ -16,21 +16,29 @@ const ABAB_ = false;
 const ABBA_ = false;
 const BAAA_ = false; // Использовать маску 0x**...*AAA (одинаковые 3 знака в конце)
 const AAAB_ = false; // Использовать маску 0x**...AAA* (одинаковые 3 знака в конце)
-
-
-const AAAA_ = true; // Использовать маску 0x**...AAAA (одинаковые 4 знака в конце)
-const _AAAA = true; // Использовать маску 0x**...AAAA (одинаковые 4 знака в начале)
 const AAAB_BAAA = false; // Использовать маску 0xAAAB...BAAA (одинаковые 3 знака в конце)
+
+const AAAA_ = false; // Использовать маску 0x**...AAAA (одинаковые 4 знака в конце)
+const _AAAA = false; // Использовать маску 0x**...AAAA (одинаковые 4 знака в начале)
+
 const AAAA_AAAA_ = true;
 const AAAA_BBBB_ = true;
 const _0000 = true;
 
+const FANCY = true;
+
+const FANCY_WORDS = [
+    'DEAD',
+    'CAFE',
+    'DEAF',
+    'FACE',
+    'FADE'
+];
 
 const Utils = require('./utils.js');
 const TYPE = `создания красивых кошельков`;
 
 let startI = 0;
-
 
 /* ========================================================================= */
 (async () => {
@@ -160,6 +168,34 @@ function aaaa_aaaa (address){
         false;
 }
 
+/* ========================================================================= */
+function getLastFour (address) {
+    let result = `${address[address.length - 4]}`;
+    result += `${address[address.length - 3]}`;
+    result += `${address[address.length - 2]}`;
+    result += `${address[address.length - 1]}`;
+    return result;
+}
+
+/* ========================================================================= */
+function getFirstFour (address) {
+    let result = `${address[2]}`;
+    result += `${address[3]}`;
+    result += `${address[4]}`;
+    result += `${address[5]}`;
+    return result;
+}
+
+/* ========================================================================= */
+function hasFancy (address) {
+    let firstFour = getFirstFour(address);
+    let lastFour = getLastFour(address);
+
+    return FANCY_WORDS.includes(firstFour.toUpperCase())
+        || FANCY_WORDS.includes(lastFour.toUpperCase());
+}
+
+// FANCY_WORDS
 
 /* ========================================================================= */
 function check(address){
@@ -175,6 +211,7 @@ function check(address){
     let AAAA_AAAA = (AAAA_AAAA_) ? aaaa_aaaa(address) : false;
     let AAAA_BBBB = (AAAA_BBBB_) ? aaaa_bbbb(address) : false;
     let _ZERO = (_0000) ? _0000f(address) : false;
+    let isFancy = (FANCY) ? hasFancy(address) : false;
 
     return ABBA || 
         AABB || ABAB ||
@@ -182,5 +219,7 @@ function check(address){
         AAAB || BAAA ||
         AAAB__BAAA ||
         AAAA_BBBB || 
+        _ZERO ||
+        isFancy ||
         AAAA_AAAA;
 }
