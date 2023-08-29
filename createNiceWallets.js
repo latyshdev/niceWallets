@@ -25,7 +25,10 @@ const AAAA_AAAA_ = true;
 const AAAA_BBBB_ = true;
 const _0000 = true;
 
-const FANCY = true;
+const FANCY = false;
+const FANCY_AAAA = true;
+const AAAA_FANCY = true;
+const _0000_DEAD = true;
 
 const FANCY_WORDS = [
     'DEAD',
@@ -39,6 +42,12 @@ const Utils = require('./utils.js');
 const TYPE = `создания красивых кошельков`;
 
 let startI = 0;
+
+// let address = `0x0000_DEAD`;
+// console.log(_0000f(address) && hasFancy(address));
+// console.log(_0000f(address));
+// console.log(hasFancy(address));
+// return;
 
 /* ========================================================================= */
 (async () => {
@@ -86,7 +95,9 @@ function aaaa (address){
 }
 
 function _0000f (address) {
-    return aaaa(address) && address[address.length - 1] === `0`
+    let first = getFirstFour(address);
+    console.log(first, _aaaa(address))
+    return _aaaa(address) && first === `0000`
 }
 
 /* ========================================================================= */
@@ -213,6 +224,19 @@ function check(address){
     let _ZERO = (_0000) ? _0000f(address) : false;
     let isFancy = (FANCY) ? hasFancy(address) : false;
 
+    let isAAAA_Fancy = (AAAA_FANCY) 
+        ? _aaaa(address) && hasFancy(address) 
+        : false;
+
+    let is0000_DEAD = (_0000_DEAD) 
+        ? getLastFour(address).toUpperCase === 'DEAD' 
+            && getFirstFour(address) === '0000'
+        : false;
+
+    let isFANCY_aaaa = (FANCY_AAAA)
+        ? hasFancy(address) && aaaa(address)
+        : false;
+
     return ABBA || 
         AABB || ABAB ||
         AAAA || __AAAA ||
@@ -221,5 +245,8 @@ function check(address){
         AAAA_BBBB || 
         _ZERO ||
         isFancy ||
+        isAAAA_Fancy ||
+        is0000_DEAD ||
+        isFANCY_aaaa ||
         AAAA_AAAA;
 }
