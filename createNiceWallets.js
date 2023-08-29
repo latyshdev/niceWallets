@@ -7,9 +7,9 @@ const ETHERS = require('ethers');
 // Константы
 const PREFIX = `4444`; // Столбец имен
 const FILENAME = `${PREFIX}.txt`; // Имя файла, куда записывать кошельки
-const LOG = true; // Выводить результат проверки (замедляет работу)
+const LOG = false; // Выводить результат проверки (замедляет работу)
 // const FILENAME = `4444.txt`; // Имя файла, куда записывать кошельки
-const AMOUNT = 1;  // Количество кошельков
+const AMOUNT = 10;  // Количество кошельков
 
 const AABB_ = false; // Использовать маску 0x**...AABB (одинаковые 2 знака)
 const ABAB_ = false;
